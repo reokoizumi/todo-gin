@@ -7,10 +7,7 @@ import (
 	"strconv"
 
 	"github.com/joho/godotenv"
-	"gorm.io/gorm"
 )
-
-var DB *gorm.DB
 
 type DBConfig struct {
 	Host     string
@@ -29,7 +26,7 @@ func BuildDBConfig() *DBConfig {
 	port, _ := strconv.Atoi(os.Getenv("DB_PORT"))
 
 	dbconfig := DBConfig {
-		Host: "0.0.0.0",
+		Host: os.Getenv("DB_HOST"),
 		Port: port,
 		User: os.Getenv("DB_USER"),
 		DBName: os.Getenv("DATABASE"),

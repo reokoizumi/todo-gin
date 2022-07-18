@@ -9,16 +9,23 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/reokoizumi/todo-gin/config"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 
 	"github.com/joho/godotenv"
 )
 
 func main() {
-	
+	db, err := gorm.Open(mysql.Open(config.DbURL(config.BuildDBConfig())), &gorm.Config{})
+	if err != nil {
+		fmt.Println(err)
+	}
+	dbs, err := db.DB()
+	defer dbs.Close()
 
 
-
-	err := godotenv.Load("../.env")
+	err = godotenv.Load("../.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
