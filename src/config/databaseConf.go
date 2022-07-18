@@ -25,17 +25,17 @@ func BuildDBConfig() *DBConfig {
 
 	port, _ := strconv.Atoi(os.Getenv("DB_PORT"))
 
-	dbconfig := DBConfig {
-		Host: os.Getenv("DB_HOST"),
-		Port: port,
-		User: os.Getenv("DB_USER"),
-		DBName: os.Getenv("DATABASE"),
+	dbconfig := DBConfig{
+		Host:     os.Getenv("DB_HOST"),
+		Port:     port,
+		User:     os.Getenv("DB_USER"),
+		DBName:   os.Getenv("DATABASE"),
 		Password: os.Getenv("DB_PASSWORD"),
 	}
 	return &dbconfig
 }
 
-func DbURL(dbConfig * DBConfig) string {
+func DbURL(dbConfig *DBConfig) string {
 	return fmt.Sprintf(
 		"%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True",
 		dbConfig.User,
@@ -45,4 +45,3 @@ func DbURL(dbConfig * DBConfig) string {
 		dbConfig.DBName,
 	)
 }
-

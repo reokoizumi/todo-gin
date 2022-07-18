@@ -40,4 +40,3 @@ func DeleteATodo(todo *Todo, id uint) (err error) {
 	}
 	return nil
 }
-

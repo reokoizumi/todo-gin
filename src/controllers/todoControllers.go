@@ -7,7 +7,6 @@ import (
 	"github.com/reokoizumi/todo-gin/models"
 )
 
-
 func GetTodos(c *gin.Context) {
 	var todo []models.Todo
 	err := models.GetAllTodos(&todo)
@@ -28,5 +27,3 @@ func CreateATodo(c *gin.Context) {
 		c.JSON(http.StatusOK, todo)
 	}
 }
-
-
