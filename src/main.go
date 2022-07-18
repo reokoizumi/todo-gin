@@ -17,12 +17,12 @@ import (
 )
 
 func main() {
-	db, err := gorm.Open(mysql.Open(config.DbURL(config.BuildDBConfig())), &gorm.Config{})
+	_, err := gorm.Open(mysql.Open(config.DbURL(config.BuildDBConfig())), &gorm.Config{})
 	if err != nil {
 		fmt.Println(err)
+	} else {
+		fmt.Println("Successfully connect database..")
 	}
-	dbs, err := db.DB()
-	defer dbs.Close()
 
 
 	err = godotenv.Load("../.env")
